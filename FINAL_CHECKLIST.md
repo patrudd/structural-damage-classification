@@ -27,5 +27,5 @@
 - [x] Tambahkan public score V2 ke `reports/results_v2.json` dan README.
 - [ ] Unduh notebook Kaggle yang sudah selesai dieksekusi dan ganti `04_final_gpu_v2.ipynb` jika dosen meminta output tersimpan.
 - [ ] Tambahkan NIM pada README bila diwajibkan.
-- [ ] Push seluruh source, notebook, reports, dan submission ke GitHub.
-- [ ] Pastikan repository GitHub dapat dibuka oleh dosen.
+- [x] Push seluruh source, notebook, reports, dan submission ke GitHub.
+- [x] Repository GitHub bersifat publik dan dapat dibuka oleh dosen.
