@@ -6,6 +6,7 @@ pasca gempa ke dalam lima kelas. Model final memakai LightGBM, bukan Neural Netw
 - Nama: **Rahardian Putra**
 - NRP: **5052231018**
 - Kompetisi: [Structural Damage Classification](https://www.kaggle.com/competitions/structural-damage-classification)
+- Tautan undangan: [Kaggle Competition](https://www.kaggle.com/t/a9196b92680b4492aeb06aeaee94f654)
 - Metrik: **Macro F1-Score**
 - Tenggat kompetisi: **14 Oktober 2026, 20.00 WIB**
 - Public score V1: **0,55165**
@@ -48,6 +49,7 @@ structural-damage-classification/
 │   ├── train.py
 │   └── predict.py
 ├── models/
+│   └── .gitkeep
 ├── submissions/
 └── reports/
     └── figures/
@@ -55,6 +57,24 @@ structural-damage-classification/
 
 Dataset tidak disimpan di GitHub. Aturan `.gitignore` mengecualikan `data/*.csv`,
 arsip data, kredensial Kaggle, cache Python, model Joblib, dan file sistem operasi.
+
+## Memperoleh dataset
+
+1. Buka tautan undangan kompetisi dan pilih **Join Competition**.
+2. Terima peraturan kompetisi melalui **I Understand and Accept**.
+3. Buka tab **Data**, kemudian pilih **Download All**, atau unduh
+   `train.csv`, `test.csv`, dan `sample_submission.csv` satu per satu.
+4. Untuk penggunaan lokal, ekstrak ketiga file tersebut ke folder `data/`.
+
+Alternatif melalui Kaggle API setelah rules diterima:
+
+```bash
+kaggle competitions download -c structural-damage-classification
+unzip structural-damage-classification.zip -d data
+```
+
+Dataset tidak di-commit karena aturan tugas melarang penyimpanan dataset besar di
+repository. Kredensial `kaggle.json` juga dikecualikan oleh `.gitignore`.
 
 ## Menjalankan notebook final di Kaggle
 
@@ -116,6 +136,16 @@ Cabang numerik menggunakan imputasi median. Cabang kategorikal menggunakan imput
 modus dan `OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1)`.
 Untuk GPU, kategori dengan paling banyak 128 level tetap kategori native; `ward_id`
 dan prefix yang lebih besar dianggap numerik sehingga dibatasi `max_bin=63`.
+
+## Strategi klasifikasi multikelas
+
+Materi tugas menjelaskan One-vs-All/One-vs-Rest (OvA/OvR) dan One-vs-One (OvO).
+Keduanya berguna untuk mengubah classifier biner menjadi classifier multikelas.
+Model final proyek ini memakai objective multiclass native LightGBM karena target
+memiliki lima kelas dan LightGBM dapat mempelajari seluruh kelas secara langsung.
+Karena itu, OvA dan OvO tidak dipaksakan pada model final. Perbandingan eksplisit
+OvA/OvO tidak dilaporkan sebagai hasil eksperimen karena belum dijalankan pada dataset
+kompetisi; contoh `fetch_covtype` di materi adalah contoh pembelajaran, bukan dataset tugas.
 
 ## Eksperimen
 

@@ -4,6 +4,8 @@
 
 - [x] Struktur `data/`, `notebooks/`, `scripts/`, `models/`, `submissions/`, dan `reports/` tersedia.
 - [x] Dataset dan kredensial Kaggle dikecualikan oleh `.gitignore`.
+- [x] README menjelaskan cara bergabung dan mengunduh dataset melalui web atau Kaggle API.
+- [x] Folder `models/` dilacak dengan `.gitkeep`; artefak model dihasilkan saat training.
 - [x] Seluruh function/class di `scripts/` memiliki docstring.
 - [x] Notebook memakai `Pipeline` dan `ColumnTransformer`.
 - [x] Model final bukan Neural Network.
