@@ -57,10 +57,10 @@ def inspect_data(data_dir: Path, output_dir: Path):
         'age_999_count': int(train.age_building.eq(999).sum()),
         'geography_overlap_test': {c: float(test[c].isin(train[c]).mean()) for c in ['district_id','vdcmun_id','ward_id']},
     }
-    (output_dir / 'reports/data_audit.json').write_text(json.dumps(audit, indent=2))
+    (output_dir / 'reports/data_audit_v1.json').write_text(json.dumps(audit, indent=2))
     train.damage_grade.value_counts().sort_index().plot.bar(title='Distribusi kelas train', ylabel='Jumlah bangunan', rot=0)
     plt.tight_layout()
-    plt.savefig(figures / 'class_distribution.png', dpi=150)
+    plt.savefig(figures / '01_distribusi_kelas_v1.png', dpi=150)
     plt.close()
     print('DATA_AUDIT', json.dumps(audit), flush=True)
     return train, test, sample
@@ -96,7 +96,7 @@ def run(data_dir: Path, output_dir: Path, quick: bool = False) -> dict:
         cv=cv, n_jobs=1, random_state=42, refit=True, verbose=1, error_score='raise')
     print('TUNING_START: development subset only; holdout remains outside search', flush=True)
     search.fit(Xsmall, ysmall, model__categorical_feature=categorical_indices)
-    pd.DataFrame(search.cv_results_).to_csv(output_dir/'reports/cv_results.csv', index=False)
+    pd.DataFrame(search.cv_results_).to_csv(output_dir/'reports/hyperparameter_search_v1.csv', index=False)
     print('TUNING_RESULT', search.best_score_, search.best_params_, flush=True)
     selected = clone(search.best_estimator_)
     start = perf_counter()
@@ -105,25 +105,25 @@ def run(data_dir: Path, output_dir: Path, quick: bool = False) -> dict:
     heldout_score = f1_score(yhold, predicted, average='macro')
     benchmarks.append({'model':'lightgbm_tuned', 'train_rows':len(Xdev),
                        'holdout_macro_f1':heldout_score, 'seconds':perf_counter()-start})
-    pd.DataFrame(benchmarks).to_csv(output_dir/'reports/model_comparison.csv', index=False)
+    pd.DataFrame(benchmarks).to_csv(output_dir/'reports/model_comparison_v1.csv', index=False)
     report = classification_report(yhold, predicted, labels=LABELS, output_dict=True, zero_division=0)
-    (output_dir/'reports/classification_report.json').write_text(json.dumps(report, indent=2))
+    (output_dir/'reports/classification_report_v1.json').write_text(json.dumps(report, indent=2))
     print('HOLDOUT_MACRO_F1', heldout_score, flush=True)
     print(classification_report(yhold, predicted, labels=LABELS, zero_division=0), flush=True)
     confusion = confusion_matrix(yhold, predicted, labels=LABELS)
     ConfusionMatrixDisplay(confusion, display_labels=LABELS).plot(cmap='Blues', xticks_rotation=30)
     plt.tight_layout()
-    plt.savefig(output_dir/'reports/figures/confusion_matrix.png', dpi=150)
+    plt.savefig(output_dir/'reports/figures/05_confusion_matrix_v1.png', dpi=150)
     plt.close()
     Xi, yi = stratified_subset(Xhold, yhold, 100 if quick else 2000)
     importance = permutation_importance(selected, Xi, yi, scoring='f1_macro', n_repeats=2,
                                        n_jobs=1, random_state=42)
     imp = pd.DataFrame({'feature':Xi.columns, 'mean':importance.importances_mean,
                         'std':importance.importances_std}).sort_values('mean', ascending=False)
-    imp.to_csv(output_dir/'reports/permutation_importance.csv', index=False)
+    imp.to_csv(output_dir/'reports/permutation_importance_v1.csv', index=False)
     imp.head(12).sort_values('mean').plot.barh(x='feature',y='mean',legend=False,title='Permutation importance (holdout Macro F1)')
     plt.tight_layout()
-    plt.savefig(output_dir/'reports/figures/feature_importance.png', dpi=150)
+    plt.savefig(output_dir/'reports/figures/06_permutation_importance_v1.png', dpi=150)
     plt.close()
     print('FINAL_REFIT_START', len(X), flush=True)
     final = clone(search.best_estimator_)
@@ -144,7 +144,7 @@ def run(data_dir: Path, output_dir: Path, quick: bool = False) -> dict:
         'public_score':None, 'private_score':None,
         'versions':{'python':platform.python_version(),'sklearn':sklearn.__version__,
             'lightgbm':lightgbm.__version__,'pandas':pd.__version__,'numpy':np.__version__}}
-    (output_dir/'reports/results.json').write_text(json.dumps(result, indent=2))
+    (output_dir/'reports/results_v1.json').write_text(json.dumps(result, indent=2))
     print('COMPLETE', json.dumps(result), flush=True)
     return result
 

@@ -22,10 +22,10 @@
 
 ## Sebelum dikumpulkan
 
-- [x] Salin `submission_improved_v2.csv` hasil Kaggle ke `submissions/`.
+- [x] Salin hasil Kaggle sebagai `submissions/submission_v2_public_0.56747.csv`.
 - [x] Submission V2 diterima Kaggle dengan public Macro F1 0,56747.
 - [x] Tambahkan public score V2 ke `reports/results_v2.json` dan README.
-- [ ] Unduh notebook Kaggle yang sudah selesai dieksekusi dan ganti `04_final_gpu_v2.ipynb` jika dosen meminta output tersimpan.
-- [ ] Tambahkan NIM pada README bila diwajibkan.
+- [ ] Unduh notebook Kaggle yang sudah selesai dieksekusi dan ganti `04_model_final_lightgbm_gpu_t4x2.ipynb` jika dosen meminta output tersimpan.
+- [x] Identitas Rahardian Putra dan NRP 5052231018 tercantum pada README serta notebook.
 - [x] Push seluruh source, notebook, reports, dan submission ke GitHub.
 - [x] Repository GitHub bersifat publik dan dapat dibuka oleh dosen.

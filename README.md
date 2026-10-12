@@ -4,6 +4,7 @@ Proyek Tugas 1 Supervised Machine Learning untuk memprediksi `damage_grade` bang
 pasca gempa ke dalam lima kelas. Model final memakai LightGBM, bukan Neural Network.
 
 - Nama: **Rahardian Putra**
+- NRP: **5052231018**
 - Kompetisi: [Structural Damage Classification](https://www.kaggle.com/competitions/structural-damage-classification)
 - Metrik: **Macro F1-Score**
 - Tenggat kompetisi: **14 Oktober 2026, 20.00 WIB**
@@ -35,11 +36,11 @@ structural-damage-classification/
 ├── data/
 │   └── .gitkeep
 ├── notebooks/
+│   ├── 00_workflow_lengkap_structural_damage.ipynb
 │   ├── 01_eda.ipynb
 │   ├── 02_modeling.ipynb
 │   ├── 03_submission.ipynb
-│   ├── 04_final_gpu_v2.ipynb
-│   └── structural_damage_classification.ipynb
+│   └── 04_model_final_lightgbm_gpu_t4x2.ipynb
 ├── scripts/
 │   ├── __init__.py
 │   ├── feature_engineering.py
@@ -61,7 +62,7 @@ arsip data, kredensial Kaggle, cache Python, model Joblib, dan file sistem opera
 2. Buka **Code -> New Notebook**.
 3. Tambahkan data kompetisi melalui **+ Add Input**.
 4. Buka **Settings -> Accelerator -> GPU T4 x2**.
-5. Impor `notebooks/04_final_gpu_v2.ipynb`.
+5. Impor `notebooks/04_model_final_lightgbm_gpu_t4x2.ipynb`.
 6. Pastikan `FAST_MODE = False`, kemudian pilih **Restart Session -> Run All**.
 7. Unduh `/kaggle/working/submission_improved_v2.csv`.
 8. Simpan versi Kaggle dengan **Save & Run All** agar output eksekusi dapat diaudit.
@@ -82,7 +83,7 @@ python -m scripts.train --data-dir data --output-dir .
 
 Letakkan `train.csv`, `test.csv`, dan `sample_submission.csv` di `data/` terlebih
 dahulu. Mode modular lokal mereproduksi workflow dasar berbasis CPU. Notebook
-`04_final_gpu_v2.ipynb` adalah implementasi final yang dipakai untuk hasil V2.
+`04_model_final_lightgbm_gpu_t4x2.ipynb` adalah implementasi final yang dipakai untuk hasil V2.
 
 ## Data dan validasi
 
@@ -197,9 +198,15 @@ utama didasarkan pada validation dan holdout, bukan hanya perubahan public score
 
 ## Artefak hasil
 
+- `reports/results_v1.json`: ringkasan eksperimen awal.
 - `reports/results_v2.json`: ringkasan run V2 dan status leaderboard.
+- `reports/model_comparison_v1.csv`: perbandingan model V1.
 - `reports/model_comparison_v2.csv`: perbandingan baseline dan model final.
+- `reports/classification_report_v1.csv`: metrik per kelas V1.
 - `reports/classification_report_v2.csv`: metrik per kelas.
 - `reports/confusion_matrix_v2.csv`: nilai confusion matrix.
 - `reports/figures/confusion_matrix_v2.png`: visualisasi kesalahan V2.
-- `notebooks/04_final_gpu_v2.ipynb`: notebook final untuk Kaggle T4 x2.
+- `notebooks/04_model_final_lightgbm_gpu_t4x2.ipynb`: notebook final untuk Kaggle T4 x2.
+- `submissions/submission_v1_public_0.55165.csv`: arsip submission V1.
+- `submissions/submission_v2_public_0.56747.csv`: arsip submission V2.
+- `submission.csv`: salinan final dengan nama standar untuk pengumpulan Kaggle.
