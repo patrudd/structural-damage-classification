@@ -1,0 +1,8 @@
+model,train_rows,evaluation_split,macro_f1
+Dummy prior,80000,validation,0.106283
+Logistic Regression,80000,validation,0.503983
+Random Forest V1,120000,holdout,0.5027
+LightGBM V1,426772,holdout,0.5483
+LightGBM V2 segments,341417,validation,0.538593
+LightGBM V2 hierarchical,341417,validation,0.558073
+LightGBM V2 final,426772,holdout,0.5621094345152067

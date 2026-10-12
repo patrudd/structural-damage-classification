@@ -1,0 +1,72 @@
+{
+  "competition": "structural-damage-classification",
+  "metric": "macro_f1",
+  "quick_mode": false,
+  "full_refit": true,
+  "train_rows": 533465,
+  "test_rows": 228629,
+  "development_rows": 426772,
+  "holdout_rows": 106693,
+  "baselines": [
+    {
+      "model": "Dummy (prior)",
+      "baris_latih": 120000,
+      "macro_f1_holdout": 0.1063,
+      "detik": 0.5
+    },
+    {
+      "model": "Logistic Regression",
+      "baris_latih": 120000,
+      "macro_f1_holdout": 0.5064,
+      "detik": 5.3
+    },
+    {
+      "model": "Random Forest",
+      "baris_latih": 120000,
+      "macro_f1_holdout": 0.5027,
+      "detik": 2.5
+    }
+  ],
+  "cv_best_macro_f1": 0.5466,
+  "best_params": {
+    "reg_lambda": 10.0,
+    "num_leaves": 63,
+    "n_estimators": 450,
+    "min_child_samples": 50,
+    "learning_rate": 0.08,
+    "colsample_bytree": 0.7,
+    "class_weight": "balanced"
+  },
+  "holdout_macro_f1": 0.5483,
+  "holdout_f1_per_class": {
+    "Grade 1": 0.6664,
+    "Grade 2": 0.4087,
+    "Grade 3": 0.4258,
+    "Grade 4": 0.5189,
+    "Grade 5": 0.7216
+  },
+  "holdout_recall_per_class": {
+    "Grade 1": 0.769,
+    "Grade 2": 0.4541,
+    "Grade 3": 0.4238,
+    "Grade 4": 0.5167,
+    "Grade 5": 0.6684
+  },
+  "submission_label_style": "numeric",
+  "prediction_distribution": {
+    "Grade 1": 31219,
+    "Grade 2": 32440,
+    "Grade 3": 40514,
+    "Grade 4": 53959,
+    "Grade 5": 70497
+  },
+  "public_score": null,
+  "private_score": null,
+  "versions": {
+    "python": "3.11.5",
+    "pandas": "3.0.2",
+    "numpy": "2.4.6",
+    "scikit_learn": "1.8.0",
+    "lightgbm": "4.6.0"
+  }
+}

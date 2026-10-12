@@ -1,0 +1,14 @@
+{
+  "scope": "local synthetic smoke test only",
+  "status": "passed",
+  "cases": [
+    "end-to-end quick training and prediction",
+    "unseen categorical values",
+    "missing numeric values",
+    "zero floors handled without infinity",
+    "joblib roundtrip prediction equality",
+    "sample IDs in reversed order",
+    "duplicate and mismatched submission ID rejection"
+  ],
+  "not_competition_score": true
+}

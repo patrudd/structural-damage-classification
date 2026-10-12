@@ -1,0 +1,4 @@
+model,baris_latih,macro_f1_holdout,detik
+Dummy (prior),120000,0.1063,0.5
+Logistic Regression,120000,0.5064,5.3
+Random Forest,120000,0.5027,2.5

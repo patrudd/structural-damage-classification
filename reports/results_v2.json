@@ -1,0 +1,61 @@
+{
+  "competition": "structural-damage-classification",
+  "metric": "macro_f1",
+  "run_environment": "Kaggle GPU T4 x2",
+  "gpu_backend": "opencl_dual",
+  "gpu_names": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "train_rows": 533465,
+  "test_rows": 228629,
+  "development_rows": 426772,
+  "fit_rows": 341417,
+  "validation_rows": 85355,
+  "holdout_rows": 106693,
+  "profile_validation": {
+    "segments": 0.538593,
+    "hierarchical": 0.557448
+  },
+  "selected_hierarchical_weight": 1.0,
+  "optimized_validation_macro_f1": 0.56126,
+  "reported_holdout_runs": [
+    0.56091,
+    0.562109
+  ],
+  "latest_holdout_macro_f1": 0.562109,
+  "previous_holdout_macro_f1": 0.5483,
+  "holdout_improvement": 0.013809,
+  "class_multipliers": {
+    "Grade 1": 0.776699,
+    "Grade 2": 1.067961,
+    "Grade 3": 1.067961,
+    "Grade 4": 1.116505,
+    "Grade 5": 0.970874
+  },
+  "final_seeds": [
+    42,
+    179
+  ],
+  "submission_rows": 228629,
+  "submission_prediction_distribution_reported": {
+    "1": 25013,
+    "2": 33514,
+    "3": 41792,
+    "4": 58518,
+    "5": 69792
+  },
+  "public_score_v1_verified": 0.55165,
+  "public_score_v2": 0.56747,
+  "private_score_v2": null,
+  "versions": {
+    "python": "3.13.15",
+    "pandas": "2.3.3",
+    "numpy": "2.1.3",
+    "scikit_learn": "1.6.1",
+    "lightgbm": "4.6.0"
+  },
+  "provenance": "Metrics transcribed from the completed Kaggle run and confusion matrix on 2026-10-12. Public V2 score was verified on the Kaggle submissions page.",
+  "submission_file": "submission_improved_v2.csv",
+  "submission_sha256": "8c729c9b8aa6c43c25d962e4d008766cf4fb77e4805513a793c76afd0654f651"
+}
