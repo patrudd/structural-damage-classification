@@ -10,6 +10,7 @@ venv/
 kaggle.json
 .DS_Store
 models/*.joblib
+models/pipeline_model_lightgbm.pkl
 project_export/
 *.zip
 submission_grade_labels.csv

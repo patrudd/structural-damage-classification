@@ -129,7 +129,7 @@ def run(data_dir: Path, output_dir: Path, quick: bool = False) -> dict:
     final = clone(search.best_estimator_)
     final.fit(X, y, model__categorical_feature=categorical_indices)
     (output_dir/'models').mkdir(exist_ok=True)
-    model_path = output_dir/'models/pipeline_lightgbm.joblib'
+    model_path = output_dir/'models/pipeline_model_lightgbm.pkl'
     joblib.dump(final, model_path)
     restored = joblib.load(model_path)
     assert np.array_equal(final.predict(test.head(10)), restored.predict(test.head(10)))

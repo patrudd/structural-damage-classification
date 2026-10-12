@@ -49,14 +49,15 @@ structural-damage-classification/
 │   ├── train.py
 │   └── predict.py
 ├── models/
-│   └── .gitkeep
+│   └── pipeline_model_lightgbm_v1.pkl
 ├── submissions/
 └── reports/
     └── figures/
 ```
 
 Dataset tidak disimpan di GitHub. Aturan `.gitignore` mengecualikan `data/*.csv`,
-arsip data, kredensial Kaggle, cache Python, model Joblib, dan file sistem operasi.
+arsip data, kredensial Kaggle, cache Python, model hasil run ulang, dan file sistem
+operasi. Satu model V1 yang sudah diverifikasi disertakan sebagai artefak penilaian.
 
 ## Memperoleh dataset
 
@@ -217,6 +218,25 @@ score belum tersedia karena kompetisi masih berlangsung.
 Private leaderboard memakai bagian test yang lebih besar, sehingga keputusan model
 utama didasarkan pada validation dan holdout, bukan hanya perubahan public score.
 
+## Model tersimpan
+
+Repository menyertakan `models/pipeline_model_lightgbm_v1.pkl`, yaitu Pipeline V1
+yang telah dilatih dan berisi feature engineering, `ColumnTransformer`, serta
+`LGBMClassifier`. Model telah diuji dapat dimuat dari proses Python baru:
+
+```python
+import joblib
+
+model = joblib.load("models/pipeline_model_lightgbm_v1.pkl")
+prediksi = model.predict(data_test)
+```
+
+Gunakan versi dependensi pada `requirements.txt`. Ekstensi `.pkl` hanya nama format;
+serialisasinya menggunakan `joblib`, yang lebih efisien untuk objek NumPy dan model
+scikit-learn. Model final V2 adalah ensemble empat LightGBM dari dua representasi
+fitur dan dua seed. Artefak ensemble tersebut dibuat oleh notebook final di Kaggle
+dan tidak disimpan di GitHub karena ukurannya jauh lebih besar.
+
 ## Keterbatasan
 
 - GPU OpenCL tidak mendukung categorical bins yang sangat besar; ID besar harus
@@ -228,6 +248,7 @@ utama didasarkan pada validation dan holdout, bukan hanya perubahan public score
 
 ## Artefak hasil
 
+- `models/pipeline_model_lightgbm_v1.pkl`: Pipeline LightGBM V1 portabel dan terlatih.
 - `reports/results_v1.json`: ringkasan eksperimen awal.
 - `reports/results_v2.json`: ringkasan run V2 dan status leaderboard.
 - `reports/model_comparison_v1.csv`: perbandingan model V1.
