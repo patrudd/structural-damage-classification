@@ -56,7 +56,7 @@
     "lightgbm": "4.6.0"
   },
   "provenance": "Metrics transcribed from the completed Kaggle run and confusion matrix on 2026-10-12. Public V2 score was verified on the Kaggle submissions page.",
-  "submission_file": "submission_improved_v2.csv",
+  "submission_file": "submission.csv",
   "submission_sha256": "8c729c9b8aa6c43c25d962e4d008766cf4fb77e4805513a793c76afd0654f651",
   "repository_submission_file": "submissions/submission_v2_public_0.56747.csv"
 }

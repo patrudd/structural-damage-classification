@@ -64,7 +64,7 @@ arsip data, kredensial Kaggle, cache Python, model Joblib, dan file sistem opera
 4. Buka **Settings -> Accelerator -> GPU T4 x2**.
 5. Impor `notebooks/04_model_final_lightgbm_gpu_t4x2.ipynb`.
 6. Pastikan `FAST_MODE = False`, kemudian pilih **Restart Session -> Run All**.
-7. Unduh `/kaggle/working/submission_improved_v2.csv`.
+7. Unduh `/kaggle/working/submission.csv`.
 8. Simpan versi Kaggle dengan **Save & Run All** agar output eksekusi dapat diaudit.
 
 Notebook memeriksa keberadaan dua GPU. LightGBM 4.6 pada runtime Kaggle memakai
